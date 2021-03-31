@@ -1,0 +1,11 @@
+import 'package:flutter/material.dart';
+
+class AppColors {
+    
+{[ const resolvedTokens = @dsm.resolveTokens(@dsm.allColorTokens())  /]}
+{[ for token in resolvedTokens ]}
+  static const {[ inject "export_token_name" context token.source /]} = {[ inject "export_color" context token /]};
+{[/]}
+
+  AppColors._();
+}

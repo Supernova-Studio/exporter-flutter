@@ -1,0 +1,6 @@
+{[ const colorValue = value.substring(1, 8) /]}
+{[ const alpha = colorValue.substring(6, 2) /]}
+{[ const red = colorValue.substring(0, 2) /]}
+{[ const green = colorValue.substring(2, 2) /]}
+{[ const blue = colorValue.substring(4, 2) /]}
+Color(0x{{alpha}}{{red}}{{green}}{{blue}})
