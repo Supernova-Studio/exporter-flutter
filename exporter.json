@@ -11,7 +11,8 @@
     "organization": "Your organization goes here",
     "config": {
         "output": "output.json",
-        "sources": "sources.json"
+        "sources": "sources.json",
+        "js": "src/functions.js"
     },
     "engines": {
         "pulsar": "1.0.0",

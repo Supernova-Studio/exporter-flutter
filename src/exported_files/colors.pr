@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-    
-{[ const colorTokens = @ds.tokensByType("Color") /]}
-{[ for token in colorTokens ]}
-  {[ const tokenName = token.name.replacing("/", " ").camelcased(false) /]}
-  {[ log token.description /]}
-  {[ if @boolean.and(@compare.nonnull(token.description), @boolean.not(token.description.equals(""))) ]}
-  /// {{ token.description }}
+
+{[ const colorTokensGroups = @ds.tokenGroupsOfType("Color") /]}
+{[ for colorTokenGroup in colorTokensGroups ]}
+  {[ const fullTokenGroupPath = @js.arrayConcat(colorTokenGroup.path, colorTokenGroup.name) /]}
+
+  // Group: {{ @js.arrayJoin(fullTokenGroupPath, " / ") }}
+  {[ const colorTokenInGroups = @ds.tokensByGroupId(colorTokenGroup.id) /]}
+  {[ for colorToken in colorTokenInGroups ]}
+  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, colorToken.name) /]}
+  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ const alpha = colorToken.value.hex.substring(6, 2) /]}
+  {[ const red = colorToken.value.hex.substring(0, 2) /]}
+  {[ const green = colorToken.value.hex.substring(2, 2) /]}
+  {[ const blue = colorToken.value.hex.substring(4, 2) /]}
+
+  {[ if @boolean.and(@compare.nonnull(colorToken.description), @boolean.not(@compare.equals(colorToken.description, ""))) ]}
+  /// {{ colorToken.description }}
   {[/]}
-  static const {{ tokenName }} = ;
+  static const {{ fullTokenName }} = Color(0x{{alpha}}{{red}}{{green}}{{blue}});
+{[/]}
+    
 {[/]}
 
   AppColors._();
