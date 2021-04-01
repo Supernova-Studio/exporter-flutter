@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppColors {
     
-{[ const resolvedTokens = @dsm.resolveTokens(@dsm.allColorTokens())  /]}
-{[ for token in resolvedTokens ]}
-  static const {[ inject "export_token_name" context token.source /]} = {[ inject "export_color" context token /]};
+{[ const colorTokens = @ds.tokensByType("Color") /]}
+{[ for token in colorTokens ]}
+  {[ const tokenName = token.name.replacing("/", " ").camelcased(false) /]}
+  {[ log token.description /]}
+  {[ if @boolean.and(@compare.nonnull(token.description), @boolean.not(token.description.equals(""))) ]}
+  /// {{ token.description }}
+  {[/]}
+  static const {{ tokenName }} = ;
 {[/]}
 
   AppColors._();
