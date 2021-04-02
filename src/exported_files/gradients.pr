@@ -2,6 +2,34 @@ import 'package:flutter/material.dart';
 
 class AppGradients {
 
+{[ const gradientTokensTree = @ds.tokenGroupTreeByType("Gradient") /]}
+{[ traverse gradientTokensTree property subgroups into gradientTokenGroup ]}
+  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(gradientTokenGroup) /]}
+  {[ const gradientTokenInGroups = @ds.tokensByGroupId(gradientTokenGroup.id) /]}
+  {[ for gradientToken in gradientTokenInGroups ]}
+  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
+  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  
+  {[ if @boolean.and(@compare.nonnull(gradientToken.description), @boolean.not(@compare.equals(gradientToken.description, ""))) ]}
+{{ @js.createDocumentationComment(gradientToken.description, "  ") }}
+  {[/]}
+  {[ log gradientToken /]}
+  static const {{ fullTokenName }} = LinearGradient(
+    begin: {[ inject "export_point" context gradientToken.value.from /]},
+    end: {[ inject "export_point" context gradientToken.value.to /]},
+    stops: [
+  {[ for stop in gradientToken.value.stops ]}
+      {{ stop.position.toString() }},
+  {[/]}
+    ],
+    colors: [
+  {[ for stop in gradientToken.value.stops ]}
+      {[ inject "export_color_value" context stop.color /]},
+  {[/]}
+    ],
+  );
+  {[/]}
+{[/]}
 
   AppGradients._();
 }
