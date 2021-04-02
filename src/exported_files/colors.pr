@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppColors {
 
-{[ const colorTokensGroups = @ds.tokenGroupsOfType("Color") /]}
-{[ for colorTokenGroup in colorTokensGroups ]}
-  {[ const fullTokenGroupPath = @js.arrayConcat(colorTokenGroup.path, colorTokenGroup.name) /]}
+{[ const colorTokensTree = @ds.tokenGroupTreeByType("Color") /]}
+{[ traverse colorTokensTree property subgroups into colorTokenGroup ]}
+{[ let fullTokenGroupPath = colorTokenGroup.path /]}
+  {[ if @boolean.not(colorTokenGroup.isRoot) ]}
+    {[ set fullTokenGroupPath = @js.arrayConcat(fullTokenGroupPath, colorTokenGroup.name) /]}
+  {[/]}
   {[ const colorTokenInGroups = @ds.tokensByGroupId(colorTokenGroup.id) /]}
   {[ for colorToken in colorTokenInGroups ]}
   {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, colorToken.name) /]}
@@ -18,8 +21,7 @@ class AppColors {
 {{ @js.createDocumentationComment(colorToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = Color(0x{{alpha}}{{red}}{{green}}{{blue}});
-{[/]}
-    
+  {[/]}
 {[/]}
 
   AppColors._();
