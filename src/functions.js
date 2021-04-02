@@ -1,12 +1,12 @@
 /**
  * 
- * @param {Array<string>} tokenPath 
- * @param {string} tokenName 
+ * @param {string} text 
+ * @param {string} indentationString 
  * 
  * @returns {string}
  */
-function createTokenName(tokenPath, tokenName) {
-    return `${tokenPath.join(" ")} ${tokenName}`
+function createDocumentationComment(text, indentationString) {
+    return text.trim().split("\n").map((line) => `${indentationString}/// ${line}`).join("\n")
 }
 
 /**
@@ -29,6 +29,6 @@ function arrayJoin(array, separator) {
     return array.join(separator)
 }
 
-Pulsar.registerFunction("createTokenName", createTokenName)
+Pulsar.registerFunction("createDocumentationComment", createDocumentationComment)
 Pulsar.registerFunction("arrayConcat", arrayConcat)
 Pulsar.registerFunction("arrayJoin", arrayJoin)

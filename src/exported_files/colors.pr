@@ -5,8 +5,6 @@ class AppColors {
 {[ const colorTokensGroups = @ds.tokenGroupsOfType("Color") /]}
 {[ for colorTokenGroup in colorTokensGroups ]}
   {[ const fullTokenGroupPath = @js.arrayConcat(colorTokenGroup.path, colorTokenGroup.name) /]}
-
-  // Group: {{ @js.arrayJoin(fullTokenGroupPath, " / ") }}
   {[ const colorTokenInGroups = @ds.tokensByGroupId(colorTokenGroup.id) /]}
   {[ for colorToken in colorTokenInGroups ]}
   {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, colorToken.name) /]}
@@ -17,7 +15,7 @@ class AppColors {
   {[ const blue = colorToken.value.hex.substring(4, 2) /]}
 
   {[ if @boolean.and(@compare.nonnull(colorToken.description), @boolean.not(@compare.equals(colorToken.description, ""))) ]}
-  /// {{ colorToken.description }}
+{{ @js.createDocumentationComment(colorToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = Color(0x{{alpha}}{{red}}{{green}}{{blue}});
 {[/]}
