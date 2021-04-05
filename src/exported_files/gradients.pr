@@ -24,7 +24,7 @@ class AppGradients {
     ],
     colors: [
   {[ for stop in gradientToken.value.stops ]}
-      {[ inject "export_color_value" context stop.color /]},
+  {[ inject "export_color_value" context stop.color /]},
   {[/]}
     ],
   );
