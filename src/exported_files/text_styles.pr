@@ -2,6 +2,45 @@ import 'package:flutter/material.dart';
 
 class AppTextStyles {
 
+{[ const typographyTokensTree = @ds.tokenGroupTreeByType("Typography") /]}
+{[ traverse typographyTokensTree property subgroups into typographyTokenGroup ]}
+  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(typographyTokenGroup) /]}
+  {[ const typographyTokenInGroups = @ds.tokensByGroupId(typographyTokenGroup.id) /]}
+  {[ for typographyToken in typographyTokenInGroups ]}
+  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, typographyToken.name) /]}
+  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ let fontStyle = "normal" /]}
+  {[ if @ds.fonts.isItalic(typographyToken.value.font) ]}
+    {[ set fontStyle = "italic" /]}
+  {[/]}
+  {[ let decoration = "none" /]}
+  {[ switch typographyToken.value.textDecoration ]}
+    {[ case "None" ]}
+      {[ set decoration = "none" /]}
+    {[ case "Underline" ]}
+      {[ set decoration = "underline" /]}
+    {[ case "Strikethrough" ]}
+      {[ set decoration = "lineThrough" /]}
+  {[/]}
+  {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
+  {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
+    {[ const fontSize = typographyToken.value.fontSize.measure /]}
+    {[ set letterSpacing = fontSize.dividedBy(100).multipliedBy(letterSpacing) /]}
+  {[/]}
+  
+  {[ if @boolean.and(@compare.nonnull(typographyToken.description), @boolean.not(@compare.equals(typographyToken.description, ""))) ]}
+{{ @js.createDocumentationComment(typographyToken.description, "  ") }}
+  {[/]}
+  static const {{ fullTokenName }} = TextStyle(
+    fontFamily: "{{ typographyToken.value.font.family }}",
+    fontWeight: FontWeight.w{{ @ds.fonts.weight(typographyToken.value.font) }},
+    fontStyle: FontStyle.{{ fontStyle }},
+    fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
+    decoration: TextDecoration.{{ decoration }},
+    letterSpacing: {{ letterSpacing.toString() }},
+  );
+  {[/]}
+{[/]}
 
   AppTextStyles._();
 }
