@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+
+class AppRadii {
+
+{[ const radiusTokensTree = @ds.tokenGroupTreeByType("Radius") /]}
+{[ traverse radiusTokensTree property subgroups into radiusTokenGroup ]}
+  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(radiusTokenGroup) /]}
+  {[ const radiusTokenInGroups = @ds.tokensByGroupId(radiusTokenGroup.id) /]}
+  {[ for radiusToken in radiusTokenInGroups ]}
+  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, radiusToken.name) /]}
+  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  
+  {[ if @boolean.and(@compare.nonnull(radiusToken.description), @boolean.not(@compare.equals(radiusToken.description, ""))) ]}
+{{ @js.createDocumentationComment(radiusToken.description, "  ") }}
+  {[/]}
+  static const {{ fullTokenName }} = BorderRadius.all(Radius.circular( {[ inject "export_measure_value" context radiusToken.value.radius /]} ));
+  {[/]}
+{[/]}
+
+  AppRadii._();
+}

@@ -17,6 +17,10 @@
             "write_to": "gradients.dart"
         },
         {
+            "invoke": "radii.pr",
+            "write_to": "radii.dart"
+        },
+        {
             "invoke": "shadows.pr",
             "write_to": "shadows.dart"
         },
