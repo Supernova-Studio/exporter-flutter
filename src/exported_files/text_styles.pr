@@ -27,7 +27,6 @@ class AppTextStyles {
     {[ const fontSize = typographyToken.value.fontSize.measure /]}
     {[ set letterSpacing = fontSize.dividedBy(100).multipliedBy(letterSpacing) /]}
   {[/]}
-  
   {[ if @boolean.and(@compare.nonnull(typographyToken.description), @boolean.not(@compare.equals(typographyToken.description, ""))) ]}
 {{ @js.createDocumentationComment(typographyToken.description, "  ") }}
   {[/]}
@@ -39,8 +38,8 @@ class AppTextStyles {
     decoration: TextDecoration.{{ decoration }},
     letterSpacing: {{ letterSpacing.toString() }},
   );
+
   {[/]}
 {[/]}
-
   AppTextStyles._();
 }

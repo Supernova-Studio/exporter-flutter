@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AppDimensions {
 
 {[ const measureTokensTree = @ds.tokenGroupTreeByType("Measure") /]}
@@ -9,13 +7,12 @@ class AppDimensions {
   {[ for measureToken in measureTokenInGroups ]}
   {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, measureToken.name) /]}
   {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  
   {[ if @boolean.and(@compare.nonnull(measureToken.description), @boolean.not(@compare.equals(measureToken.description, ""))) ]}
 {{ @js.createDocumentationComment(measureToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.value /]};
+
   {[/]}
 {[/]}
-
   AppDimensions._();
 }
