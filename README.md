@@ -14,34 +14,59 @@ The Flutter Exporter allows you to **produce production-ready code for all produ
 - [x] Gradients
 - [x] Shadows
 - [x] Borders
+- [x] Radii
+- [x] Measures
 
-You can generate all production ready-code either manually using Supernova's [VS Code extension](https://marketplace.visualstudio.com/items?itemName=SupernovaIO.pulsar-vsc-extension), or automate your code delivery pipeline using Supernova [Design Continuous Delivery](https://supernova.io/automated-code-delivery).
+The exporter will generate a class per style type with a static constant for each specific token. If provided, it will also include each token's description as a documentation comment. Here's an example of the exporter ouput for a single `11 Regular Italic` text style under a `Text` group:
 
+```dart
+import 'package:flutter/material.dart';
+
+class AppTextStyles {
+
+  static const text11RegularItalic = TextStyle(
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    fontSize: 11,
+    decoration: TextDecoration.none,
+    letterSpacing: 0.3,
+  );
+  
+  AppTextStyles._();
+}
+```
 
 ## Example Usage
 
 Once you have run the exporter against your design system, you can start using the code in your codebase right away. Here are a few examples of how you can use the output of the Flutter exporter:
 
-### [Example 1]
-
-[Todo description]
-
-```
-[Code]
-```
+### Using a text style
 
 
-### [Example 2]
+```dart
+import 'package:flutter/material.dart';
 
-[Todo description]
+import '../text_styles.dart';
 
-```
-Code
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Center(
+        child: Text(
+          "Hello, world!",
+          style: AppTextStyles.text11RegularItalic,
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ## Installing
 
-In order to make the Supernova Flutter exporter available for your organization so you can start generating code from your design system, please follow the installation guide in our [developer documentation](https://developers.supernova.io/using-exporters/installing-exporters).
+You can generate all production ready-code either manually using Supernova's [VS Code extension](https://marketplace.visualstudio.com/items?itemName=SupernovaIO.pulsar-vsc-extension), or automate your code delivery pipeline using Supernova [Design Continuous Delivery](https://supernova.io/automated-code-delivery). In order to make the Supernova Flutter exporter available for your organization so you can start generating code from your design system, please follow the installation guide in our [developer documentation](https://developers.supernova.io/using-exporters/installing-exporters).
 
 ## Reporting Bugs or Requesting Features
 
