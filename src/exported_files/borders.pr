@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppBorders {
 
-{[ const borderTokensTree = @ds.tokenGroupTreeByType("Border") /]}
+{[ const borderTokensTree = ds.tokenGroupTreeByType("Border") /]}
 {[ traverse borderTokensTree property subgroups into borderTokenGroup ]}
-  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(borderTokenGroup) /]}
-  {[ const borderTokenInGroups = @ds.tokensByGroupId(borderTokenGroup.id) /]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(borderTokenGroup) /]}
+  {[ const borderTokenInGroups = ds.tokensByGroupId(borderTokenGroup.id) /]}
   {[ for borderToken in borderTokenInGroups ]}
-  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, borderToken.name) /]}
-  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if @boolean.and(@compare.nonnull(borderToken.description), @boolean.not(@compare.equals(borderToken.description, ""))) ]}
-{{ @js.createDocumentationComment(borderToken.description, "  ") }}
+  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, borderToken.name) /]}
+  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ if (borderToken.description && borderToken.description !== "") ]}
+{{ createDocumentationComment(borderToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = Border.fromBorderSide(BorderSide(
     color: {[ inject "export_color_value" context borderToken.value.color /]},
