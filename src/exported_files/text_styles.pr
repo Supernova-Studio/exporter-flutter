@@ -22,7 +22,7 @@ class AppTextStyles {
     {[ case "Strikethrough" ]}
       {[ set decoration = "lineThrough" /]}
   {[/]}
-  {[ let height = (typographyToken.value.lineHeight.measure / typographyToken.value.letterSpacing.measure) /]}
+  {[ let height = (typographyToken.value.lineHeight.measure / typographyToken.value.fontSize.measure) /]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
   {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
     {[ const fontSize = typographyToken.value.fontSize.measure /]}
