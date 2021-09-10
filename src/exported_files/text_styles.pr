@@ -22,10 +22,11 @@ class AppTextStyles {
     {[ case "Strikethrough" ]}
       {[ set decoration = "lineThrough" /]}
   {[/]}
-  {[ let height = (typographyToken.value.lineHeight.measure / typographyToken.value.fontSize.measure) /]}
+  {[ const lineHeight = typographyToken.value.lineHeight.measure /]}
+  {[ const fontSize = typographyToken.value.fontSize.measure /]}
+  {[ let height = lineHeight.dividedBy(fontSize) /]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
   {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
-    {[ const fontSize = typographyToken.value.fontSize.measure /]}
     {[ set letterSpacing = fontSize.dividedBy(100).multipliedBy(letterSpacing) /]}
   {[/]}
   {[ if @boolean.and(@compare.nonnull(typographyToken.description), @boolean.not(@compare.equals(typographyToken.description, ""))) ]}
