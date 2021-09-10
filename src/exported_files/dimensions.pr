@@ -1,4 +1,4 @@
-class AppDimensions {
+class BalanceDimensions {
 
 {[ const measureTokensTree = @ds.tokenGroupTreeByType("Measure") /]}
 {[ traverse measureTokensTree property subgroups into measureTokenGroup ]}
@@ -14,5 +14,5 @@ class AppDimensions {
 
   {[/]}
 {[/]}
-  AppDimensions._();
+  BalanceDimensions._();
 }

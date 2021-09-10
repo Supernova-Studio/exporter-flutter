@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+class BalanceColors {
 
 {[ const colorTokensTree = @ds.tokenGroupTreeByType("Color") /]}
 {[ traverse colorTokensTree property subgroups into colorTokenGroup ]}
@@ -16,5 +16,5 @@ class AppColors {
   
   {[/]}
 {[/]}
-  AppColors._();
+  BalanceColors._();
 }

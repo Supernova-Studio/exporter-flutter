@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppTextStyles {
+class BalanceTextStyles {
 
 {[ const typographyTokensTree = @ds.tokenGroupTreeByType("Typography") /]}
 {[ traverse typographyTokensTree property subgroups into typographyTokenGroup ]}
@@ -22,6 +22,7 @@ class AppTextStyles {
     {[ case "Strikethrough" ]}
       {[ set decoration = "lineThrough" /]}
   {[/]}
+  {[ let height = (typographyToken.value.lineHeight.measure / typographyToken.value.letterSpacing.measure) /]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
   {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
     {[ const fontSize = typographyToken.value.fontSize.measure /]}
@@ -37,9 +38,10 @@ class AppTextStyles {
     fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
     decoration: TextDecoration.{{ decoration }},
     letterSpacing: {{ letterSpacing.toString() }},
+    height: {{ height.toString() }},
   );
 
   {[/]}
 {[/]}
-  AppTextStyles._();
+  BalanceTextStyles._();
 }
