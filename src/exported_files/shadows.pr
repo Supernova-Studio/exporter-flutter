@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BalanceShadows {
+class AppShadows {
 
 {[ const shadowTokensTree = @ds.tokenGroupTreeByType("Shadow") /]}
 {[ traverse shadowTokensTree property subgroups into shadowTokenGroup ]}
@@ -21,5 +21,5 @@ class BalanceShadows {
 
   {[/]}
 {[/]}
-  BalanceShadows._();
+  AppShadows._();
 }

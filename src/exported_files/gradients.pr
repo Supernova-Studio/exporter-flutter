@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BalanceGradients {
+class AppGradients {
 
 {[ const gradientTokensTree = @ds.tokenGroupTreeByType("Gradient") /]}
 {[ traverse gradientTokensTree property subgroups into gradientTokenGroup ]}
@@ -30,5 +30,5 @@ class BalanceGradients {
 
   {[/]}
 {[/]}
-  BalanceGradients._();
+  AppGradients._();
 }

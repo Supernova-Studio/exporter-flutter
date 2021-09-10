@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BalanceRadii {
+class AppRadii {
 
 {[ const radiusTokensTree = @ds.tokenGroupTreeByType("Radius") /]}
 {[ traverse radiusTokensTree property subgroups into radiusTokenGroup ]}
@@ -16,5 +16,5 @@ class BalanceRadii {
 
   {[/]}
 {[/]}
-  BalanceRadii._();
+  AppRadii._();
 }

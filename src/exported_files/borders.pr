@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BalanceBorders {
+class AppBorders {
 
 {[ const borderTokensTree = @ds.tokenGroupTreeByType("Border") /]}
 {[ traverse borderTokensTree property subgroups into borderTokenGroup ]}
@@ -19,5 +19,5 @@ class BalanceBorders {
 
   {[/]}
 {[/]}
-  BalanceBorders._();
+  AppBorders._();
 }

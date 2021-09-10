@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BalanceTextStyles {
+class AppTextStyles {
 
 {[ const typographyTokensTree = @ds.tokenGroupTreeByType("Typography") /]}
 {[ traverse typographyTokensTree property subgroups into typographyTokenGroup ]}
@@ -43,5 +43,5 @@ class BalanceTextStyles {
 
   {[/]}
 {[/]}
-  BalanceTextStyles._();
+  AppTextStyles._();
 }
