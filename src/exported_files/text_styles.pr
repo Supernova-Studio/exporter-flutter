@@ -22,11 +22,12 @@ class AppTextStyles {
     {[ case "Strikethrough" ]}
       {[ set decoration = "lineThrough" /]}
   {[/]}
+  {[ const fontSize = typographyToken.value.fontSize.measure /]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
   {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
-    {[ const fontSize = typographyToken.value.fontSize.measure /]}
     {[ set letterSpacing = (fontSize / 100 * letterSpacing) /]}
   {[/]}
+  {[ let lineHeight = typographyToken.value.lineHeight /]}
   {[ if (typographyToken.description && typographyToken.description !== "") ]}
 {{ createDocumentationComment(typographyToken.description, "  ") }}
   {[/]}
@@ -37,6 +38,9 @@ class AppTextStyles {
     fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
     decoration: TextDecoration.{{ decoration }},
     letterSpacing: {{ letterSpacing.toString() }},
+    {[ if lineHeight ]}
+    height: {{ (lineHeight.measure / fontSize) }},
+    {[/]}
   );
 
   {[/]}
