@@ -3,8 +3,7 @@
     "name": "Flutter",
     "description": "Flutter token and style exporter",
     "source_dir": "src",
-    "version": "1.1",
-    "usesBrands": true,
+    "version": "1.2",
     "tags": [
         "Flutter",
         "Dart",
@@ -14,6 +13,7 @@
     "author": "Artem Ufimtcev",
     "organization": "Supernova",
     "homepage": "https://supernova.io",
+    "usesBrands": true,
     "config": {
         "output": "output.json",
         "sources": "sources.json",

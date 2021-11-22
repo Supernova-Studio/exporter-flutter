@@ -1,6 +1,7 @@
 class AppDimensions {
 
-{[ const measureTokensTree = ds.tokenGroupTreeByType("Measure") /]}
+{[ let brand = ds.currentBrand() /]}
+{[ const measureTokensTree = ds.tokenGroupTreeByType("Measure", brand.id) /]}
 {[ traverse measureTokensTree property subgroups into measureTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(measureTokenGroup) /]}
   {[ const measureTokenInGroups = ds.tokensByGroupId(measureTokenGroup.id) /]}
