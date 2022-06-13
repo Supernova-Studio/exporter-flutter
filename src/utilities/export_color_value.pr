@@ -2,4 +2,4 @@
 {[ const red = context.hex.substring(0, 2) /]}
 {[ const green = context.hex.substring(2, 2) /]}
 {[ const blue = context.hex.substring(4, 2) /]}
-Color(0x{{alpha}}{{red}}{{green}}{{blue}})
+0x{{alpha}}{{red}}{{green}}{{blue}}

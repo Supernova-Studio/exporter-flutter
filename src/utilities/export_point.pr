@@ -1,1 +1,1 @@
-Alignment({{ context.x.subtractedBy(0.5).multipliedBy(2) }}, {{ context.y.subtractedBy(0.5).multipliedBy(2) }})
+Alignment({{ (context.x - 0.5) * 2 }}, {{ (context.y - 0.5) * 2 }})

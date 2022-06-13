@@ -1,14 +1,15 @@
 class AppDimensions {
 
-{[ const measureTokensTree = @ds.tokenGroupTreeByType("Measure") /]}
+{[ let brand = ds.currentBrand() /]}
+{[ const measureTokensTree = ds.tokenGroupTreeByType("Measure", brand.id) /]}
 {[ traverse measureTokensTree property subgroups into measureTokenGroup ]}
-  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(measureTokenGroup) /]}
-  {[ const measureTokenInGroups = @ds.tokensByGroupId(measureTokenGroup.id) /]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(measureTokenGroup) /]}
+  {[ const measureTokenInGroups = ds.tokensByGroupId(measureTokenGroup.id) /]}
   {[ for measureToken in measureTokenInGroups ]}
-  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, measureToken.name) /]}
-  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if @boolean.and(@compare.nonnull(measureToken.description), @boolean.not(@compare.equals(measureToken.description, ""))) ]}
-{{ @js.createDocumentationComment(measureToken.description, "  ") }}
+  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, measureToken.name) /]}
+  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ if (measureToken.description && measureToken.description !== "") ]}
+{{ createDocumentationComment(measureToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.value /]};
 

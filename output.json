@@ -1,28 +1,8 @@
 {
     "blueprints": [
         {
-            "invoke": "borders.pr",
-            "write_to": "borders.dart"
-        },
-        {
             "invoke": "colors.pr",
             "write_to": "colors.dart"
-        },
-        {
-            "invoke": "dimensions.pr",
-            "write_to": "dimensions.dart"
-        },
-        {
-            "invoke": "gradients.pr",
-            "write_to": "gradients.dart"
-        },
-        {
-            "invoke": "radii.pr",
-            "write_to": "radii.dart"
-        },
-        {
-            "invoke": "shadows.pr",
-            "write_to": "shadows.dart"
         },
         {
             "invoke": "text_styles.pr",

@@ -1,4 +1,4 @@
-{[ if @compare.nonnull(originStyle) ]}
+{[ if originStyle ]}
 {{ originStyle.name.replacing("/", " ").camelcased(false) }}
 {[ else ]}
 {{ meta.name.replacing("/", " ").camelcased(false) }}

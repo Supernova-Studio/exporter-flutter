@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 
 class AppGradients {
 
-{[ const gradientTokensTree = @ds.tokenGroupTreeByType("Gradient") /]}
+{[ let brand = ds.currentBrand() /]}
+{[ const gradientTokensTree = ds.tokenGroupTreeByType("Gradient", brand.id) /]}
 {[ traverse gradientTokensTree property subgroups into gradientTokenGroup ]}
-  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(gradientTokenGroup) /]}
-  {[ const gradientTokenInGroups = @ds.tokensByGroupId(gradientTokenGroup.id) /]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(gradientTokenGroup) /]}
+  {[ const gradientTokenInGroups = ds.tokensByGroupId(gradientTokenGroup.id) /]}
   {[ for gradientToken in gradientTokenInGroups ]}
-  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
-  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if @boolean.and(@compare.nonnull(gradientToken.description), @boolean.not(@compare.equals(gradientToken.description, ""))) ]}
-{{ @js.createDocumentationComment(gradientToken.description, "  ") }}
+  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
+  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ if (gradientToken.description && gradientToken.description !== "") ]}
+{{ createDocumentationComment(gradientToken.description, "  ") }}
   {[/]}
   {[ log gradientToken /]}
   static const {{ fullTokenName }} = LinearGradient(

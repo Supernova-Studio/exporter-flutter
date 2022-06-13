@@ -1,20 +1,70 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+import '../color/swatch.dart';
 
-{[ const colorTokensTree = @ds.tokenGroupTreeByType("Color") /]}
+/// 앱 컬러는 브랜드, 시멘틱 두 가지의 체계를 가집니다.
+/// [BrandColors]는 앱의 정체성을 나타내는 색입니다.
+///
+/// [SemanticColors]는 앱 내에서 목적에 맞게 사용되는 컬러입니다.
+class AppColors {
+  const AppColors._();
+
+  static const Color white = Color(0xffffffff);
+
+  static const Color black = Color(0xff000000);
+
+  /// [BrandColors]
+  static const BalanceColor primary = BrandColors.primary;
+  static const BalanceColor secondary = BrandColors.secondary;
+  static const BalanceColor neutral = BrandColors.neutral;
+  static const BalanceColor grey = BrandColors.grey;
+}
+
+{[ let brand = ds.currentBrand() /]}
+{[ let brandColors = createEmptyObj() /]}
+{[ const balanceColors = ["primary", "secondary", "neutral", "grey"] /]}
+{[ const colorTokensTree = ds.tokenGroupTreeByType("Color", brand.id) /]}
 {[ traverse colorTokensTree property subgroups into colorTokenGroup ]}
-  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(colorTokenGroup) /]}
-  {[ const colorTokenInGroups = @ds.tokensByGroupId(colorTokenGroup.id) /]}
-  {[ for colorToken in colorTokenInGroups ]}
-  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, colorToken.name) /]}
-  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if @boolean.and(@compare.nonnull(colorToken.description), @boolean.not(@compare.equals(colorToken.description, ""))) ]}
-{{ @js.createDocumentationComment(colorToken.description, "  ") }}
-  {[/]}
-  static const {{ fullTokenName }} = {[ inject "export_color_value" context colorToken.value /]}; 
-  
+  {[ const groupName = colorTokenGroup.name.lowercased() /]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(colorTokenGroup) /]}
+  {[ const colorTokenInGroups = ds.tokensByGroupId(colorTokenGroup.id) /]}
+  {[ if (balanceColors.contains(groupName)) ]}
+    {[ let swatchMap = createEmptyObj() /]}
+    {[ for colorToken in colorTokenInGroups ]}
+      {[ if (colorToken.description && colorToken.description !== "") ]}
+        {{ createDocumentationComment(colorToken.description, "  ") }}
+      {[/]}
+      {[ let tokenName = colorToken.name.camelcased(false) /]}
+      {[ swatchMap = addEntryToObj(swatchMap, tokenName, convertHexColor(colorToken.value)) /]}
+    {[/]}
+    {[ brandColors = addEntryToObj(brandColors, groupName, swatchMap) /]}
   {[/]}
 {[/]}
-  AppColors._();
+
+/// BrandColors
+/// 브랜드 컬러는 앱의 아이덴티티를 좌우하는 중요한 색상입니다.
+///
+/// [primary]는 서비스 전반의 메인 컬러 요소로 활용되는 색상입니다.
+///
+/// 추가적인 컬러의 정의가 필요한 경우
+/// 시멘틱 컬러에 정의해서 사용합니다.
+class BrandColors {
+  const BrandColors._();
+
+  {[ const colors = objToEntries(brandColors) /]}
+  {[ for color in colors ]}
+  {[ const groupName = color[0] /]}
+  {[ const entries = objToEntries(color[1]) /]}
+  {[ if (entries.count() === 12) ]}
+  static const BalanceColor {{ groupName.lowercased() }} = BalanceColor(
+    {{ entries[6][1] }}, {* 6th of entries is primary color *}
+    <int, Color>{
+      {[ for entry in entries ]}
+        {[ const key = entry[0].split(groupName)[1] /]}
+        {{ key }}: Color({{ entry[1] }}),
+      {[/]}
+    },
+  );
+  {[/]}
+  {[/]}
 }

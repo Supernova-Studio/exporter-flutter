@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 
 class AppShadows {
 
-{[ const shadowTokensTree = @ds.tokenGroupTreeByType("Shadow") /]}
+{[ let brand = ds.currentBrand() /]}
+{[ const shadowTokensTree = ds.tokenGroupTreeByType("Shadow", brand.id) /]}
 {[ traverse shadowTokensTree property subgroups into shadowTokenGroup ]}
-  {[ let fullTokenGroupPath = @js.createFullTokenGroupPath(shadowTokenGroup) /]}
-  {[ const shadowTokenInGroups = @ds.tokensByGroupId(shadowTokenGroup.id) /]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(shadowTokenGroup) /]}
+  {[ const shadowTokenInGroups = ds.tokensByGroupId(shadowTokenGroup.id) /]}
   {[ for shadowToken in shadowTokenInGroups ]}
-  {[ const fullTokenPath = @js.arrayConcat(fullTokenGroupPath, shadowToken.name) /]}
-  {[ const fullTokenName = @js.arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if @boolean.and(@compare.nonnull(shadowToken.description), @boolean.not(@compare.equals(shadowToken.description, ""))) ]}
-{{ @js.createDocumentationComment(shadowToken.description, "  ") }}
+  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, shadowToken.name) /]}
+  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ if (shadowToken.description && shadowToken.description !== "") ]}
+{{ createDocumentationComment(shadowToken.description, "  ") }}
   {[/]}
   static const {{ fullTokenName }} = BoxShadow(
     color: {[ inject "export_color_value" context shadowToken.value.color /]},
@@ -23,3 +24,5 @@ class AppShadows {
 {[/]}
   AppShadows._();
 }
+© 2022 GitHub, Inc.
+

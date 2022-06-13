@@ -3,16 +3,17 @@
     "name": "BalanceFlutter",
     "description": "Flutter token and style exporter",
     "source_dir": "src",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "tags": [
         "Flutter",
         "Dart",
         "Tokens",
         "Styles"
     ],
-    "author": "Artem Ufimtcev",
-    "organization": "Supernova",
-    "homepage": "https://supernova.io",
+    "author": "Danny Na",
+    "organization": "PassionFactory",
+    "homepage": "https://balancefriends.com",
+    "usesBrands": false,
     "config": {
         "output": "output.json",
         "sources": "sources.json",
