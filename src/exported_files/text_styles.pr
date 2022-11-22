@@ -24,9 +24,17 @@ class AppTextStyles {
       {[ set decoration = "lineThrough" /]}
   {[/]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
-  {[ if typographyToken.value.letterSpacing.unit.equals("Percent") ]}
-    {[ const fontSize = typographyToken.value.fontSize.measure /]}
+  {[ const fontSize = typographyToken.value.fontSize.measure /]}
+  {[ if typographyToken.value.letterSpacing.unit == "Percent" ]}
     {[ set letterSpacing = (fontSize / 100 * letterSpacing) /]}
+  {[/]}
+  {[ let lineHeight = "null" /]}
+  {[ if (typographyToken.value.lineHeight != null) ]}
+    {[ if typographyToken.value.lineHeight.unit == "Pixels" ]}
+      {[ lineHeight = (typographyToken.value.lineHeight.measure / fontSize) /]}
+    {[ else if typographyToken.value.lineHeight.unit == "Percent" ]}
+      {[ lineHeight = (typographyToken.value.lineHeight.measure / 100 * fontSize) /]}
+    {[/]}
   {[/]}
   {[ if (typographyToken.description && typographyToken.description !== "") ]}
 {{ createDocumentationComment(typographyToken.description, "  ") }}
@@ -38,6 +46,10 @@ class AppTextStyles {
     fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
     decoration: TextDecoration.{{ decoration }},
     letterSpacing: {{ letterSpacing.toString() }},
+    {[ if lineHeight != "null" ]}
+    height: {{ lineHeight.toString() }},
+    {[/]}
+    textStyle: const TextStyle(leadingDistribution: TextLeadingDistribution.even),
   );
 
   {[/]}
