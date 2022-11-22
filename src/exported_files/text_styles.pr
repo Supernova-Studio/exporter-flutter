@@ -49,7 +49,7 @@ class AppTextStyles {
     {[ if lineHeight != "null" ]}
     height: {{ lineHeight.toString() }},
     {[/]}
-    textStyle: const TextStyle(leadingDistribution: TextLeadingDistribution.even),
+    leadingDistribution: TextLeadingDistribution.even,
   );
 
   {[/]}
