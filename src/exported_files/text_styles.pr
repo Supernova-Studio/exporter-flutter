@@ -25,14 +25,14 @@ class AppTextStyles {
   {[/]}
   {[ let letterSpacing = typographyToken.value.letterSpacing.measure /]}
   {[ const fontSize = typographyToken.value.fontSize.measure /]}
-  {[ if typographyToken.value.letterSpacing.unit == "Percent" ]}
+  {[ if (typographyToken.value.letterSpacing.unit == "Percent") ]}
     {[ set letterSpacing = (fontSize / 100 * letterSpacing) /]}
   {[/]}
   {[ let lineHeight = "null" /]}
   {[ if (typographyToken.value.lineHeight != null) ]}
-    {[ if typographyToken.value.lineHeight.unit == "Pixels" ]}
+    {[ if (typographyToken.value.lineHeight.unit == "Pixels") ]}
       {[ lineHeight = (typographyToken.value.lineHeight.measure / fontSize) /]}
-    {[ else if typographyToken.value.lineHeight.unit == "Percent" ]}
+    {[ else if (typographyToken.value.lineHeight.unit == "Percent") ]}
       {[ lineHeight = (typographyToken.value.lineHeight.measure / 100 * fontSize) /]}
     {[/]}
   {[/]}
@@ -46,7 +46,7 @@ class AppTextStyles {
     fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
     decoration: TextDecoration.{{ decoration }},
     letterSpacing: {{ letterSpacing.toString() }},
-    {[ if lineHeight != "null" ]}
+    {[ if (lineHeight != "null") ]}
     height: {{ lineHeight.toString() }},
     {[/]}
     leadingDistribution: TextLeadingDistribution.even,
