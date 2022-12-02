@@ -33,7 +33,7 @@ class AppTextStyles {
     {[ if (typographyToken.value.lineHeight.unit == "Pixels") ]}
       {[ lineHeight = (typographyToken.value.lineHeight.measure / fontSize) /]}
     {[ else if (typographyToken.value.lineHeight.unit == "Percent") ]}
-      {[ lineHeight = (typographyToken.value.lineHeight.measure / 100 * fontSize) /]}
+      {[ lineHeight = (typographyToken.value.lineHeight.measure / 100) /]}
     {[/]}
   {[/]}
   {[ if (typographyToken.description && typographyToken.description !== "") ]}
