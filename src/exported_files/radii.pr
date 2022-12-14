@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppRadii {
+class FhRadii {
+  const FhRadii._();
 
 {[ let brand = ds.currentBrand() /]}
 {[ const radiusTokensTree = ds.tokenGroupTreeByType("Radius", brand.id) /]}
@@ -17,5 +18,4 @@ class AppRadii {
 
   {[/]}
 {[/]}
-  AppRadii._();
 }

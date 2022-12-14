@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppShadows {
+class FhShadows {
+  const FhShadows._();
 
 {[ let brand = ds.currentBrand() /]}
 {[ const shadowTokensTree = ds.tokenGroupTreeByType("Shadow", brand.id) /]}
@@ -22,5 +23,4 @@ class AppShadows {
 
   {[/]}
 {[/]}
-  AppShadows._();
 }

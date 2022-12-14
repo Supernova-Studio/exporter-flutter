@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppGradients {
+class FhGradients {
+  const FhGradients._();
 
 {[ let brand = ds.currentBrand() /]}
 {[ const gradientTokensTree = ds.tokenGroupTreeByType("Gradient", brand.id) /]}
@@ -31,5 +32,4 @@ class AppGradients {
 
   {[/]}
 {[/]}
-  AppGradients._();
 }
