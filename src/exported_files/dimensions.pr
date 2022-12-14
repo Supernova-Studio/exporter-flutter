@@ -1,4 +1,5 @@
-class AppDimensions {
+class FhDimensions {
+  const FhDimensions._();
 
 {[ let brand = ds.currentBrand() /]}
 {[ const measureTokensTree = ds.tokenGroupTreeByType("Measure", brand.id) /]}
@@ -15,5 +16,4 @@ class AppDimensions {
 
   {[/]}
 {[/]}
-  AppDimensions._();
 }
