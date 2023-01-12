@@ -41,7 +41,7 @@ class FhTextStyles {
 {{ createDocumentationComment(typographyToken.description, "  ") }}
   {[/]}
   static const TextStyle {{ fullTokenName }} = TextStyle(
-    fontFamily: "{{ typographyToken.value.font.family }}",
+    fontFamily: '{{ typographyToken.value.font.family }}',
     fontWeight: FontWeight.w{{ ds.fontWeight(typographyToken.value.font) }},
     fontStyle: FontStyle.{{ fontStyle }},
     fontSize: {[ inject "export_measure_value" context typographyToken.value.fontSize /]},
