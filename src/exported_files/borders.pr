@@ -14,7 +14,7 @@ class FhBorders {
   {[ if (borderToken.description && borderToken.description !== "") ]}
 {{ createDocumentationComment(borderToken.description, "  ") }}
   {[/]}
-  static const {{ fullTokenName }} = Border.fromBorderSide(BorderSide(
+  static const Border {{ fullTokenName }} = Border.fromBorderSide(BorderSide(
     color: {[ inject "export_color_value" context borderToken.value.color /]},
     width: {[ inject "export_measure_value" context borderToken.value.width /]},
   ));
