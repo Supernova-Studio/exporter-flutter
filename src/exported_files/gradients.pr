@@ -15,7 +15,7 @@ class FhGradients {
 {{ createDocumentationComment(gradientToken.description, "  ") }}
   {[/]}
   {[ log gradientToken /]}
-  static const {{ fullTokenName }} = LinearGradient(
+  static const LinearGradient {{ fullTokenName }} = LinearGradient(
     begin: {[ inject "export_point" context gradientToken.value.from /]},
     end: {[ inject "export_point" context gradientToken.value.to /]},
     stops: [
