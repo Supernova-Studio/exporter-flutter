@@ -12,7 +12,7 @@ class FhDimensions {
   {[ if (measureToken.description && measureToken.description !== "") ]}
 {{ createDocumentationComment(measureToken.description, "  ") }}
   {[/]}
-  static const double {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.addedBy(value) /]};
+  static const double {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.value.addedBy(measureToken.value) /]};
 
   {[/]}
 {[/]}
