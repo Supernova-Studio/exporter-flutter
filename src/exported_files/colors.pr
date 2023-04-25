@@ -6,15 +6,15 @@ class AppColors {
 {[ const colorTokensTree = ds.tokenGroupTreeByType("Color", brand.id) /]}
 {[ traverse colorTokensTree property subgroups into colorTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(colorTokenGroup) /]}
-  {[ const colorTokenInGroups = ds.tokensByGroupId(colorTokenGroup.id) /]}
+  {[ const colorTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(colorTokenGroup.id)) /]}
   {[ for colorToken in colorTokenInGroups ]}
-  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, colorToken.name) /]}
-  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
-  {[ if (colorToken.description && colorToken.description !== "") ]}
-{{ createDocumentationComment(colorToken.description, "  ") }}
-  {[/]}
-  static const {{ fullTokenName }} = {[ inject "export_color_value" context colorToken.value /]}; 
-  
+    {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, colorToken.name) /]}
+    {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+    {[ if (colorToken.description && colorToken.description !== "") ]}
+      {{ createDocumentationComment(colorToken.description, "  ") }}
+    {[/]}
+    static const {{ fullTokenName }} = {[ inject "export_color_value" context colorToken.value /]};
+
   {[/]}
 {[/]}
   AppColors._();

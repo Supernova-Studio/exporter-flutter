@@ -13,10 +13,6 @@
             "write_to": "dimensions.dart"
         },
         {
-            "invoke": "gradients.pr",
-            "write_to": "gradients.dart"
-        },
-        {
             "invoke": "radii.pr",
             "write_to": "radii.dart"
         },

@@ -6,7 +6,7 @@ class AppTextStyles {
 {[ const typographyTokensTree = ds.tokenGroupTreeByType("Typography", brand.id) /]}
 {[ traverse typographyTokensTree property subgroups into typographyTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(typographyTokenGroup) /]}
-  {[ const typographyTokenInGroups = ds.tokensByGroupId(typographyTokenGroup.id) /]}
+  {[ const typographyTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(typographyTokenGroup.id)) /]}
   {[ for typographyToken in typographyTokenInGroups ]}
   {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, typographyToken.name) /]}
   {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}

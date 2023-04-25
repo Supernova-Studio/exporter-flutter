@@ -6,7 +6,7 @@ class AppBorders {
 {[ const borderTokensTree = ds.tokenGroupTreeByType("Border", brand.id) /]}
 {[ traverse borderTokensTree property subgroups into borderTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(borderTokenGroup) /]}
-  {[ const borderTokenInGroups = ds.tokensByGroupId(borderTokenGroup.id) /]}
+  {[ const borderTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(borderTokenGroup.id)) /]}
   {[ for borderToken in borderTokenInGroups ]}
   {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, borderToken.name) /]}
   {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}

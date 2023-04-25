@@ -6,7 +6,7 @@ class AppGradients {
 {[ const gradientTokensTree = ds.tokenGroupTreeByType("Gradient", brand.id) /]}
 {[ traverse gradientTokensTree property subgroups into gradientTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(gradientTokenGroup) /]}
-  {[ const gradientTokenInGroups = ds.tokensByGroupId(gradientTokenGroup.id) /]}
+  {[ const gradientTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(gradientTokenGroup.id)) /]}
   {[ for gradientToken in gradientTokenInGroups ]}
   {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
   {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}

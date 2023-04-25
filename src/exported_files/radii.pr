@@ -6,7 +6,7 @@ class AppRadii {
 {[ const radiusTokensTree = ds.tokenGroupTreeByType("Radius", brand.id) /]}
 {[ traverse radiusTokensTree property subgroups into radiusTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(radiusTokenGroup) /]}
-  {[ const radiusTokenInGroups = ds.tokensByGroupId(radiusTokenGroup.id) /]}
+  {[ const radiusTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(radiusTokenGroup.id)) /]}
   {[ for radiusToken in radiusTokenInGroups ]}
   {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, radiusToken.name) /]}
   {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}

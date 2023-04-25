@@ -6,7 +6,7 @@ class AppShadows {
 {[ const shadowTokensTree = ds.tokenGroupTreeByType("Shadow", brand.id) /]}
 {[ traverse shadowTokensTree property subgroups into shadowTokenGroup ]}
   {[ let fullTokenGroupPath = createFullTokenGroupPath(shadowTokenGroup) /]}
-  {[ const shadowTokenInGroups = ds.tokensByGroupId(shadowTokenGroup.id) /]}
+  {[ const shadowTokenInGroups = removeFigmaTokens(ds.tokensByGroupId(shadowTokenGroup.id)) /]}
   {[ for shadowToken in shadowTokenInGroups ]}
   {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, shadowToken.name) /]}
   {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
