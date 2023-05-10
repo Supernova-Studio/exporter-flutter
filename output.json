@@ -5,6 +5,10 @@
             "write_to": "borders.dart"
         },
         {
+            "invoke": "border_sides.pr",
+            "write_to": "border_sides.dart"
+        },
+        {
             "invoke": "colors.pr",
             "write_to": "colors.dart"
         },
