@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+
+class AppBorderSides {
+
+{[ let brand = ds.currentBrand() /]}
+{[ const borderTokensTree = ds.tokenGroupTreeByType("Border", brand.id) /]}
+{[ traverse borderTokensTree property subgroups into borderTokenGroup ]}
+  {[ let fullTokenGroupPath = createFullTokenGroupPath(borderTokenGroup) /]}
+  {[ const borderTokenInGroups = ds.tokensByGroupId(borderTokenGroup.id) /]}
+  {[ for borderToken in borderTokenInGroups ]}
+  {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, borderToken.name) /]}
+  {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false) /]}
+  {[ if (borderToken.description && borderToken.description !== "") ]}
+{{ createDocumentationComment(borderToken.description, "  ") }}
+  {[/]}
+  static const {{ fullTokenName }} = BorderSide(
+    color: {[ inject "export_color_value" context borderToken.value.color /]},
+    width: {[ inject "export_measure_value" context borderToken.value.width /]},
+  );
+
+  {[/]}
+{[/]}
+  AppBorderSides._();
+}
