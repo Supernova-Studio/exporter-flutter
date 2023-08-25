@@ -1,26 +1,21 @@
 {
-    "id": "io.supernova.flutter-styles",
-    "name": "Flutter",
-    "description": "Flutter token and style exporter",
-    "source_dir": "src",
-    "version": "1.2.6",
-    "tags": [
-        "Flutter",
-        "Dart",
-        "Tokens",
-        "Styles"
-    ],
-    "author": "Artem Ufimtcev",
-    "organization": "Supernova",
-    "homepage": "https://supernova.io",
-    "usesBrands": true,
-    "config": {
-        "output": "output.json",
-        "sources": "sources.json",
-        "js": "src/functions.js"
-    },
-    "engines": {
-        "pulsar": "1.0.0",
-        "supernova": "1.0.0"
-    }
+  "id": "io.supernova.flutter-styles",
+  "name": "Flutter",
+  "description": "Flutter token and style exporter",
+  "source_dir": "src",
+  "version": "1.2.7",
+  "tags": ["Flutter", "Dart", "Tokens", "Styles"],
+  "author": "Artem Ufimtcev",
+  "organization": "Supernova",
+  "homepage": "https://supernova.io",
+  "usesBrands": true,
+  "config": {
+    "output": "output.json",
+    "sources": "sources.json",
+    "js": "src/functions.js"
+  },
+  "engines": {
+    "pulsar": "1.0.0",
+    "supernova": "1.0.0"
+  }
 }
